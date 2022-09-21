@@ -18,6 +18,12 @@ function cargarEventListeners () {
 
         limpiarHTML() //Eliminamos todo el HTML
     })
+
+    document.addEventListener("DOMContentLoaded", () => {
+        articulosCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+
+        carritoHTML()
+    })
 }
 
 
@@ -119,6 +125,13 @@ function carritoHTML() {
 
         contenedorCarrito.appendChild(row)
     })
+
+    // Agregar carrito al localStorage
+    sincronizarStorage()
+}
+
+function sincronizarStorage() {
+    localStorage.setItem("carrito", JSON.stringify(articulosCarrito))
 }
 
 // Eliminar los cursos del HTML
